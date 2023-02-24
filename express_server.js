@@ -28,9 +28,9 @@ app.get("/urls", (req, res) => {
   res.render("urls_index", templateVars);
 });
 
-// app.post("/urls", (req, res) => {
-//     res.send(" post urls index page!");
-// });
+app.post("/urls", (req, res) => {
+    res.send(" post urls index page!");
+});
 
   app.get("/urls/:id", (req, res) => {
     const templateVars = { id: req.params.id, longURL: urlDatabase[req.params.id]};

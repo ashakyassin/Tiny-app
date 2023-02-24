@@ -17,5 +17,22 @@ app.listen(PORT, () => {
 });
 
 app.get("/urls.json", (req, res) => {
-    res.json(urlDatabase);
+ res.json(urlDatabase);
+});
+
+// urls index page this will list all the short urls in the table form
+
+// read this will list all the urls that i created 
+app.get("/urls", (req, res) => {
+  const templateVars = { urls: urlDatabase}; 
+  res.render("urls_index", templateVars);
+});
+
+// app.post("/urls", (req, res) => {
+//     res.send(" post urls index page!");
+// });
+
+  app.get("/urls/:id", (req, res) => {
+    const templateVars = { id: req.params.id, longURL: urlDatabase[req.params.id]};
+    res.render("urls_show", templateVars);
   });

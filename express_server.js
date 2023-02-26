@@ -46,6 +46,7 @@ app.post("/urls", (req, res) => {
   res.redirect(`/urls/${randomStr}`); 
 });
 
+
 app.get("/urls/new", (req, res) => {
     res.render("urls_new");
   });
@@ -63,7 +64,7 @@ app.get("/urls/new", (req, res) => {
 
 
 
-  app.get('/u/:shortURL', (req, res) => {
+  app.get('/u/:id', (req, res) => {
     const longURL = urlDatabase[req.params.shortURL];
     if (longURL) {
       res.redirect(longURL);

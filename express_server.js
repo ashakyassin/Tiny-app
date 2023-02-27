@@ -87,6 +87,15 @@ app.get("/urls/new", (req, res) => {
     urlDatabase[id] = newUrl;
     res.redirect("/urls");
   });
+
+  //This route is used to set cookie for user and redirect user to /urls after logging in
+  app.post('/login', (req, res) => {
+    const username = req.body.username;
+    res.cookie('username', username);
+    res.redirect('/urls');
+  });
+  
+  
   
   
   

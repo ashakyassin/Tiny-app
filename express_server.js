@@ -2,9 +2,12 @@
 const express = require("express");
 const app = express();
 const PORT = 8080; // default port 8080
+var cookieParser = require('cookie-parser')
+
 
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs")
+app.use(cookieParser())
 
 function generateRandomString() {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -35,10 +38,14 @@ app.get("/urls.json", (req, res) => {
 // urls index page this will list all the short urls in the table form
 
 // read this will list all the urls that i created 
-app.get("/urls", (req, res) => {
-  const templateVars = { urls: urlDatabase}; 
-  res.render("urls_index", templateVars);
+app.get('/urls', (req, res) => {
+  const templateVars = {
+    urls: urlDatabase,
+    username: req.cookies['username']
+  };
+  res.render('urls_index', templateVars);
 });
+
 
 app.post("/urls", (req, res) => {
  const randomStr = generateRandomString();
@@ -48,7 +55,11 @@ app.post("/urls", (req, res) => {
 
 
 app.get("/urls/new", (req, res) => {
-    res.render("urls_new");
+  const templateVars = {
+    urls: urlDatabase,
+    username: req.cookies['username']
+  };
+    res.render("urls_new", templateVars);
   });
 
 
@@ -90,14 +101,21 @@ app.get("/urls/new", (req, res) => {
 
   //This route is used to set cookie for user and redirect user to /urls after logging in
   app.post('/login', (req, res) => {
-    const username = req.body.username;
+    const username = req.body.email;
     res.cookie('username', username);
     res.redirect('/urls');
   });
   
   
+  // this get route will show login form
+  app.get('/login',(req, res) => {
+    res.render('urls_login')
+  });
   
   
+  app.get('/dashboard', (req, res) => {
+    const username = req.session.username;
+    res.render('dashboard', { username });
+  });
   
-
  

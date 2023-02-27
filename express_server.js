@@ -80,6 +80,14 @@ app.get("/urls/new", (req, res) => {
     delete urlDatabase[id];
     res.redirect('/urls');
   });
+// This is route updates a URL resource; POST /urls/:id 
+  app.post("/urls/:id", (req, res) => {   
+    const id = req.params.id;
+    const newUrl = req.body.longURL;
+    urlDatabase[id] = newUrl;
+    res.redirect("/urls");
+  });
+  
   
   
 

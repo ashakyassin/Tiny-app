@@ -39,5 +39,11 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <form method="POST" action="/urls/<%= id %>">
+        <label for="longURL">Long URL:</label>
+        <input type="text" id="longURL" name="longURL" value="<%= longURL %>">
+        <button type="submit">Update URL</button>
+      </form>
+      
   </body>
 </html>

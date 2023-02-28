@@ -117,6 +117,9 @@ app.get("/urls/new", (req, res) => {
 
   });
   
+  app.get('/register',(req, res) => {
+    res.render('urls_register')
+  });
   
   // this get route will show login form
   app.get('/login',(req, res) => {

@@ -5,6 +5,7 @@ const PORT = 8080; // default port 8080
 var cookieParser = require('cookie-parser')
 
 
+
 app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs")
 app.use(cookieParser())
@@ -104,6 +105,16 @@ app.get("/urls/new", (req, res) => {
     const username = req.body.email;
     res.cookie('username', username);
     res.redirect('/urls');
+  });
+
+  app.post('/logout', (req, res) =>{
+    res.clearCookie('username');
+  
+    console.log("Cookie cleared");
+    
+    
+    res.redirect('/urls');
+
   });
   
   

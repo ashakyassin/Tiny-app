@@ -23,6 +23,9 @@
           <div class="navbar-text ml-auto">
             Signed in as <%= username %>
           </div>
+          <form  method="POST" action="/logout"><button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+            logout
+          </button></form>
         <% } else { %>
           <form class="form-inline my-2 my-lg-0" method="POST" action="/login">
             <input
